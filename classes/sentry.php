@@ -551,7 +551,7 @@ class Sentry
 	 * @param   string  Field name (password type)
 	 * @return  bool|Sentry_User
 	 */
-	protected static function validate_user($login_column_value, $password, $field)
+	public static function validate_user($login_column_value, $password, $field = 'password')
 	{
 		// get user
 		$user = static::user($login_column_value);
