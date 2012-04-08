@@ -270,7 +270,7 @@ class Sentry
 		$user_id = Session::get(Config::get('sentry.session.user'));
 
 		// invalid session values - kill the user session
-		if ($user_id === null or ! is_numeric($user_id))
+		if ($user_id === null or ! is_numeric($user_id) or $user_id === 0)
 		{
 			// if they are not logged in - check for cookie and log them in
 			if (static::is_remembered())
