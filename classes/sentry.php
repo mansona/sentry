@@ -282,7 +282,7 @@ class Sentry
 		$user_id = Session::get(Config::get('sentry.session.user'));
 
 		// invalid session values - kill the user session
-		if ($user_id === null or ! is_numeric($user_id))
+		if ($user_id === null or ! is_numeric($user_id) or $user_id === 0)
 		{
 			// if they are not logged in - check for cookie and log them in
 			if (static::is_remembered())
@@ -563,7 +563,7 @@ class Sentry
 	 * @param   string  Field name (password type)
 	 * @return  bool|Sentry_User
 	 */
-	protected static function validate_user($login_column_value, $password, $field)
+	public static function validate_user($login_column_value, $password, $field = 'password')
 	{
 		// get user
 		$user = static::user($login_column_value);
